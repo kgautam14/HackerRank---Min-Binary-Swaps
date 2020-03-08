@@ -1,13 +1,37 @@
+import random
+
 def main():
 
-    # print("Hello World!")
-    # arr = [1,0,0,1,1,0,0,1,1,0,0,1]
-    # arr = [1,1,1,1,1,1,1,0,1,0,0,0,0,0,0,0,1,0,0,1,0,1,1,0,1,0,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,1]
-    # arr = [1,0,0,0,0,0,0,0,0,1,1]
-    # arr = [1,0,0,0,0,0,1]
-    # arr = [1,0,1,0,0,0,0,0,0,1]
+    maxArrays = input("Enter the number of arrays you want to generate: ")
+    maxLength = input("Enter the maximum of length of an array: ")
+    viewArr = input("Would you even like to view your Arrays? \n"
+                    "Press 1 for yes and 2 for no.")
 
-    arr = [1,0,1]
+    start(int(maxArrays), int(maxLength), int(viewArr))
+
+
+
+
+
+def start(mA, mL, vA):
+    maxNoOfArrays = mA
+    maxLenOfArray = mL
+
+    arr = []
+    for _ in range(maxNoOfArrays):
+        arr.append([])
+    for elem in arr:
+        lenOfArray = random.randint(1,maxLenOfArray)
+        for _ in range(lenOfArray):
+            elem.append(random.randint(0,1))
+        print("Size of array is :", lenOfArray)
+        val = minSwap(elem)
+        print("Minimum number of swaps required to group: ", val)
+        if (vA == 1):
+            print(elem)
+
+def minSwap(arr):
+
     size = len(arr)
     noOfzeroes = 0
     minswaps = 0
@@ -44,7 +68,8 @@ def main():
             noOfzeroesRev = noOfzeroesRev +1
 
     myans = min(minswapsRev, minswaps)
-    print(myans)
+    return(myans)
+
 
 if __name__ == '__main__':
     main()
